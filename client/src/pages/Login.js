@@ -1,20 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link} from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import loginImg from "../assets/images/rice field-amico.svg";
+import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const passwordRef = useRef(null);
 
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-    console.log(passwordRef.current);
-    // if(showPassword) 
-    //   passwordRef.current.type = "text";
-    // else
-    //   passwordRef.current.type = "password";
-  }
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }} = useForm();
 
@@ -27,7 +20,7 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="hidden bg-green-200 w-1/2 h-full lg:flex justify-center items-center">
+      <div className="hidden bg-emerald-800 w-1/2 h-full lg:flex justify-center items-center">
         <img
           className="max-w-[500px]"
           src={loginImg}
@@ -47,27 +40,39 @@ const Login = () => {
             placeholder="Email Address"
             {...register("email")}
           />
+
+          <div className="relative w-full max-w-96">
             <input
-              ref={passwordRef}
-              className="z-0 bg-green-100 placeholder:text-green-600 max-w-96 w-full px-3 py-2 mb-1 outline-none rounded-lg"
-              type="password"
+              className="absolute z-0 bg-green-100 placeholder:text-green-600 w-full px-3 py-2 outline-none rounded-lg"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password")}
             />
-            <span className="float-right" onClick={handleTogglePassword}>
-              {showPassword ? "Hide" : "Show"}
+            <span
+              className="absolute right-2 top-2.5 cursor-pointer"
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? (
+                <IoEyeOffSharp size={20} />
+              ) : (
+                <IoEyeSharp size={20} />
+              )}
             </span>
-          <div className="max-w-96 w-full">
-            <Link className="text-slate-500 float-right" to="/reset-password">
+          </div>
+
+          <div className="max-w-96 w-full mt-10">
+            <Link className="text-slate-500 float-right text-sm" to="/reset-password">
               Forgot Password?
             </Link>
           </div>
-          <button className="bg-green-900 text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4">
+          <button className="bg-emerald-800 text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4">
             Login
           </button>
           <p>
-            Already you new?{" "}
-            <Link className="text-green-900 font-semibold" to="/signup">
+            Already a user?{" "}
+            <Link className="text-green-800 font-semibold" to="/signup">
               Sign up
             </Link>
           </p>
