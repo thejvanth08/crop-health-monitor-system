@@ -25,9 +25,9 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="hidden w-1/2 h-full lg:flex justify-center items-center">
+      <div className="bg-emerald-800 hidden w-1/2 h-full lg:flex justify-center items-center">
         <img
-          className="max-w-[500px]"
+          className="max-w-[450px] h-auto"
           src={signupImg}
           alt="login page illustration"
         />
