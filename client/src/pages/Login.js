@@ -20,7 +20,7 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="hidden bg-emerald-800 w-1/2 h-full lg:flex justify-center items-center">
+      <div className="hidden bg-primary w-1/2 h-full lg:flex justify-center items-center">
         <img
           className="max-w-[500px]"
           src={loginImg}
@@ -67,7 +67,7 @@ const Login = () => {
               Forgot Password?
             </Link>
           </div>
-          <button className="bg-emerald-800 text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4">
+          <button className="bg-primary text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4">
             Login
           </button>
           <p>

@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="bg-emerald-800 hidden w-1/2 h-full lg:flex justify-center items-center">
+      <div className="bg-primary hidden w-1/2 h-full lg:flex justify-center items-center">
         <img
           className="max-w-[450px] h-auto"
           src={signupImg}
@@ -87,7 +87,7 @@ const Login = () => {
 
       
 
-          <button className="bg-emerald-800 text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4 mt-20">
+          <button className="bg-primary text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4 mt-20">
             Sign Up
           </button>
           <p>

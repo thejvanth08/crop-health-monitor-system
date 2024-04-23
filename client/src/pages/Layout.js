@@ -10,7 +10,7 @@ const Layout = () => {
 
   return (
     <div className="relative flex">
-      <header className="w-full fixed z-10 flex justify-between px-4 py-3">
+      <header className="w-full fixed z-20 flex justify-between px-4 py-3">
         <FiMenu
           className={`${
             isToggle ? "text-secondary" : ""
@@ -33,10 +33,11 @@ const Layout = () => {
           <CgProfile className="cursor-pointer" size={40} onClick={() => {navigate("profile")}}></CgProfile>
         </div>
       </header>
+
       <aside
-        className={`absolute lg:relative bg-primary w-64 lg:w-72 h-screen top-0 ${
+        className={`absolute lg:relative w-64 lg:w-72 h-screen top-0 ${
           isToggle ? "left-0" : "-left-64"
-        } lg:left-0 transition-all`}
+        } lg:left-0 transition-all z-10`}
       >
         <NavBar></NavBar>
       </aside>

@@ -49,3 +49,13 @@
   color: theme(colors.primary);
   background-color: theme(colors.secondary);
 }
+
+/* to hide the attribution */
+.leaflet-control-attribution {
+  display: none;
+}
+
+/* to remove layer selection in map */
+.leaflet-control-layers.leaflet-control {
+  display: none;
+}
