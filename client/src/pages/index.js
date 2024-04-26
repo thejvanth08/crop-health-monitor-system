@@ -6,6 +6,7 @@ import SoilAnalysis from "./SoilAnalysis";
 import Reports from "./Reports";
 import Profile from "./Profile";
 import Error from "./Error";
-import Layout from "./Layout"
+import Layout from "./Layout";
+import SelectCrops from "./SelectCrops";
 
-export {Home, Login, Signup, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout};
+export {Home, Login, Signup, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout, SelectCrops};

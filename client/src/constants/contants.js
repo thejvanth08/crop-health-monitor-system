@@ -47,7 +47,7 @@ export const coordinates = [
 export const diseaseRemedies = [
   {
     crop: "coconut tree",
-    name: "leaf blight",
+    disease: "leaf blight",
     type: "fungal",
     image: coconutImg,
     causes: [
@@ -68,7 +68,7 @@ export const diseaseRemedies = [
   },
   {
     crop: "coconut tree",
-    name: "leaf blight",
+    disease: "leaf blight",
     type: "fungal",
     image: coconutImg,
     causes: [
@@ -89,7 +89,7 @@ export const diseaseRemedies = [
   },
   {
     crop: "coconut tree",
-    name: "leaf blight",
+    disease: "leaf blight",
     type: "fungal",
     image: coconutImg,
     causes: [
@@ -109,3 +109,34 @@ export const diseaseRemedies = [
     ],
   },
 ];
+
+export const crops = [
+  {
+    name: "Coconut",
+    climate:
+      "Plenty of sunlight and it does not grow well under shade or in too cloudy regions",
+    temp: "27±5°C",
+    soilType:
+      "Well-drained, sandy or loamy soils with good water-holding capacity",
+    location:
+      "Kerala, Tamil Nadu, Andhra Pradesh, Telangana, Karnataka, West Bengal, Odisha, Maharashtra, Gujarat, Assam, Bihar, Tripura, Chhattisgarh, Nagaland, Arunachal Pradesh, Mizoram",
+    growingSeason: "Through the year",
+  },
+  {
+    name: "Mango",
+    climaticRequirements: "Humid and dry conditions",
+    temperatureRange: "23.9°C to 26.7°C",
+    soilType: "Lateritic, alluvial, sandy loam and sandy",
+    location:
+      "Uttar Pradesh, Andhra Pradesh, Bihar, Karnataka, Gujarat, Tamil Nadu, Maharashtra, West Bengal, Odisha, Madhya Pradesh",
+    growingSeason:
+      "Grown from June to October and harvested from April to June",
+  },
+];
+
+
+// export const weatherReports = [
+//   {
+//     date: 
+//   }
+// ]

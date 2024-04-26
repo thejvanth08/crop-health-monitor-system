@@ -17,12 +17,16 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  // handleSubmite calls onSuccess - if inputs are valid /onFailure - if inputs are invalid
+  const onSuccess = (data) => {
     console.log(data);
     // after successful form submission
-    navigate("/disease-analysis");
+    navigate("/select-crops");
   };
-
+  const onFailure = (data) => {
+    alert("invalid input");
+  };
+  
   return (
     <div className="w-full h-screen flex">
       <div className="bg-primary hidden w-1/2 h-full lg:flex justify-center items-center">
@@ -36,7 +40,7 @@ const Login = () => {
         <form
           className="flex flex-col h-full items-center justify-center pb-10"
           action=""
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSuccess, onFailure)}
         >
           <h3 className="text-xl text-center pb-10">Create Your New Account</h3>
 

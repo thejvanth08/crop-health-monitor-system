@@ -4,7 +4,8 @@ import DiseaseRemedy from "../components/DiseaseRemedy";
 
 const DiseaseAnalysis = () => {
   return (
-    <div className="">
+    <div className="pb-20">
+
       <h1 className="text-3xl font-bold text-center">Disease Analysis</h1>
       <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
         Identify your crop diseases & Get suggestions
@@ -37,18 +38,19 @@ const DiseaseAnalysis = () => {
       </div>
 
       <div>
-        <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">Diseased Crops &  it's Remedies</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-x-2 gap-y-8 lg:gap-x-0">
-          {
-            diseaseRemedies.map((diseaseRemedy) => <DiseaseRemedy {...diseaseRemedy}>
-            </DiseaseRemedy>)
-          }
+        <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
+          Diseased Crops & it's Remedies
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-x-2 gap-y-8 lg:gap-x-0 mb-10">
+          {diseaseRemedies.map((diseaseRemedy) => (
+            <DiseaseRemedy {...diseaseRemedy}></DiseaseRemedy>
+          ))}
         </div>
       </div>
 
-
-      <div className="h-72">
-      </div>
+      <button className="block mx-auto px-3 py-2 bg-secondary text-primary text-lg font-semibold rounded-md">
+        Download Report
+      </button>
     </div>
   );
 }

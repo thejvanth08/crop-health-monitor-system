@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import {Home, Login, Signup, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout} from "./pages"
+import {Home, Login, Signup, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout, SelectCrops} from "./pages"
 import ResetPassword from "./pages/ResetPassword";
 import Overview from "./pages/Overview";
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/select-crops" element={<SelectCrops />}></Route>
         <Route path="/" element={<Layout />}>
           <Route path="overview" element={<Overview />}></Route>
           <Route path="disease-analysis" element={<DiseaseAnalysis />}></Route>
