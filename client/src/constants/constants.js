@@ -516,8 +516,8 @@ export const sensors = [
   { name: "Nitrogen" },
   { name: "Phosphorus" },
   { name: "Potassium" },
-  { name: "Soil humidity" },
+  { name: "Soil Humidity" },
   { name: "Temperature" },
   { name: "Electrical Conductivity" },
-  { name: "SOIL PH" },
+  { name: "Soil pH" },
 ];

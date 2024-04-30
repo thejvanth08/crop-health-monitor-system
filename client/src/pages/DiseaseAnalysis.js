@@ -1,5 +1,5 @@
 import MapComponent from "../components/MapComponent";
-import { diseaseRemedies } from "../constants/contants";
+import { diseaseRemedies } from "../constants/constants";
 import DiseaseRemedy from "../components/DiseaseRemedy";
 
 const DiseaseAnalysis = () => {

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import signupImg from "../assets/images/signup.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
-import { signupInputs } from "../constants/contants";
+import { signupInputs } from "../constants/constants";
 import Input from "../components/Input";
 
 

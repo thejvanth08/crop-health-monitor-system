@@ -1,23 +1,34 @@
 import SensorChart from "../components/SensorChart";
 import SensorMeter from "../components/SensorMeter";
+import SensorName from "../components/SensorName";
 import NodeName from "../components/NodeName";
 import {useContext, useState} from "react";
-import { sensors } from "../constants/contants";
+import { useNavigate } from "react-router-dom";
+import { sensors } from "../constants/constants";
 import { AppContext } from "../App";
 import { FaPlus } from "react-icons/fa";
 
 const SoilAnalysis = () => {
   const {nodes} = useContext(AppContext);
-  const [currentNode, setCurrentNode] = useState("");
+  // default currentNode -> first node in the selected nodes list
+  let defaultNode;
+  if(nodes.length > 0) {
+    defaultNode = nodes[0] || "";
+  }
+  const [currentNode, setCurrentNode] = useState(defaultNode);
+
+  const [currentSensor, setCurrentSensor] = useState(sensors[0].name);
+
+  const navigate = useNavigate();
 
   return (
-    <div className="msin-h-full pb-10">
-      <h1 className="text-3xl font-bold text-center">Overview</h1>
+    <div className="min-h-full pb-10">
+      <h1 className="text-3xl font-bold text-center">Soil Analysis</h1>
       <div>
         <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
           Field Selection
         </h2>
-        <div className="flex">
+        <div className="flex gap-x-3">
           {nodes.map((node) => (
             <NodeName
               name={node}
@@ -26,9 +37,9 @@ const SoilAnalysis = () => {
             ></NodeName>
           ))}
           <button
-            className="inline-block text-xl font-bold w-60 py-2 rounded-lg 
-                bg-secondary text-primary flex justify-centerww"
-            onClick={() => {}}
+            className="text-xl font-bold w-16 py-2 rounded-lg 
+                bg-secondary text-primary flex justify-center items-center"
+            onClick={ () => {navigate("/select-nodes")} }
           >
             <FaPlus></FaPlus>
           </button>
@@ -38,7 +49,12 @@ const SoilAnalysis = () => {
         <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
           Time Series Sensor Data
         </h2>
-        <SensorChart></SensorChart>
+        <div className="flex flex-wrap w-full justify-center mb-4">
+          {
+            sensors.map((sensor) => <SensorName name={sensor.name} currentSensor={currentSensor} setCurrentSensor={setCurrentSensor}></SensorName> )
+          }
+        </div>
+        <SensorChart value={currentSensor}></SensorChart>
       </div>
 
       <div className="w-full mx-auto">

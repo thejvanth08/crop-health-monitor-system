@@ -1,5 +1,5 @@
 import Report from "../components/Report";
-import { reports } from "../constants/contants";
+import { reports } from "../constants/constants";
 
 const Reports = () => {
   return (

@@ -1,5 +1,5 @@
 import WeatherCard from "../components/WeatherCard";
-import { weatherData } from "../constants/contants";
+import { weatherData } from "../constants/constants";
 import { useContext, useState } from "react";
 import { AppContext } from "../App";
 import CropName from "../components/CropName";
