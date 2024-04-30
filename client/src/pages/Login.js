@@ -15,7 +15,7 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
     // after successful form submission
-    navigate("/disease-analysis");
+    navigate("/overview");
   }
 
   return (

@@ -14,6 +14,20 @@
     -webkit-appearance: none;
     margin: 0;
   }
+
+  /* scrollbar styles */
+  body::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: #e5fd99;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #1d4c43;
+    border-radius: 10px;
+  }
 }
 
 @layer components {
@@ -42,6 +56,10 @@
   .file-label:hover {
     box-shadow: none;
   }
+}
+
+.remove-scroll::-webkit-scrollbar {
+  width: 0.4rem;
 }
 
 /* applied to active link (route) */
