@@ -28,7 +28,7 @@ const SoilAnalysis = () => {
         <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
           Field Selection
         </h2>
-        <div className="flex gap-x-3">
+        <div className="flex gap-x-3 justify-center">
           {nodes.map((node) => (
             <NodeName
               name={node}
@@ -63,7 +63,7 @@ const SoilAnalysis = () => {
         </h2>
         <div className="flex flex-wrap justify-center items-center">
           {sensors.map((sensor) => (
-            <SensorMeter {...sensor}></SensorMeter>
+            <SensorMeter {...sensor} value={50}></SensorMeter>
           ))}
         </div>
       </div>

@@ -27,7 +27,7 @@ const Crop = ({crop, overviewCrops, setOverviewCrops}) => {
   }
 
   return (
-    <span onClick={toggleCrop} className={`white font-semibold inline-block border-2 border-primary px-4 py-2 rounded-2xl mx-2 my-2 cursor-pointer ${selectBg ? "bg-primary text-tertiary" : ""}`}>{crop}</span>
+    <span onClick={toggleCrop} className={`select-none font-semibold inline-block border-2 border-primary px-4 py-2 rounded-2xl mx-2 my-2 cursor-pointer ${selectBg ? "bg-primary text-secondary" : ""}`}>{crop}</span>
   )
 }
 export default Crop;

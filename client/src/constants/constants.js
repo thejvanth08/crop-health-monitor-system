@@ -17,26 +17,27 @@ export const loginInputs = [
 
 
 export const signupInputs = [
-  {
-    type: "text",
-    name: "fullname",
-    placeholder: "Full Name",
-  },
-  {
-    type: "tel",
-    name: "phoneNum",
-    placeholder: "Phone Number",
-  },
+  // use these in separate page
+  // {
+  //   type: "text",
+  //   name: "fullname",
+  //   placeholder: "Full Name",
+  // },
+  // {
+  //   type: "tel",
+  //   name: "phoneNum",
+  //   placeholder: "Phone Number",
+  // },
   {
     type: "email",
     name: "email",
     placeholder: "Email Address",
   },
-  {
-    type: "number",
-    name: "aadharNum",
-    placeholder: "Aadhar Number",
-  }
+  // {
+  //   type: "number",
+  //   name: "aadharNum",
+  //   placeholder: "Aadhar Number",
+  // }
 ];
 
 export const coordinates = [
@@ -521,3 +522,22 @@ export const sensors = [
   { name: "Electrical Conductivity" },
   { name: "Soil pH" },
 ];
+
+export const soilConditions = [
+{
+  cropName: "mango",
+  parameters: [
+    {
+      name: "nitrogen",
+      unit: "",
+      range: {
+        start: "",
+        second: "",
+        third: "",
+        last: ""
+      }
+    },
+    
+  ]
+}
+]

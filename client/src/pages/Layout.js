@@ -37,9 +37,9 @@ const Layout = () => {
       <aside
         className={`absolute lg:relative w-64 lg:w-72 h-screen top-0 ${
           isToggle ? "left-0" : "-left-64"
-        } lg:left-0 transition-all z-10`}
+        } lg:left-0 transition-all z-10`} 
       >
-        <NavBar></NavBar>
+        <NavBar setIsToggle={setIsToggle}></NavBar>
       </aside>
       {/* actual component */}
       <div className="pt-20 px-3 w-full">

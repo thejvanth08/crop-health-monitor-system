@@ -5,20 +5,20 @@ import Overview from "./pages/Overview";
 import { useState, createContext } from "react";
 import SelectNodes from "./pages/SelectNodes";
 
+// import { useTranslation } from "react-i18next";
+
 export const AppContext = createContext();
 
-
-
-
 const App = () => {
-
   // selection of general crops
   const [overviewCrops, setOverviewCrops] = useState([]);
   // selection of sensor nodes
   const [nodes, setNodes] = useState([]);
+  // user profile data (from signup)
+  const [userData, setUserData] = useState({});
 
   const contextValue = {
-    overviewCrops, setOverviewCrops, nodes, setNodes
+    overviewCrops, setOverviewCrops, nodes, setNodes, userData, setUserData
   };
 
 

@@ -1,16 +1,24 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link} from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import loginImg from "../assets/images/rice field-amico.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t, i18n } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }} = useForm();
 
+  // useEffect(() => {
+  //   // const lang = navigator.language;
+  //   i18n.changeLanguage("ta");
+
+  //   // console.log(lang);
+  // }, []);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -33,9 +41,9 @@ const Login = () => {
           action=""
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h3 className="text-xl text-center pb-10">Login Your Account</h3>
+          <h3 className="text-xl text-center pb-10">{ t("Login Your Account")   }</h3>
           <input
-            className="bg-green-100 placeholder:text-green-600 max-w-96 w-full px-3 py-2 mb-2 outline-none rounded-lg"
+            className="bg-tertiary font-semibold placeholder:text-green-500 placeholder:font-normal max-w-96 w-full px-3 py-2 mb-2 outline-none rounded-lg"
             type="email"
             placeholder="Email Address"
             {...register("email")}
@@ -43,7 +51,7 @@ const Login = () => {
 
           <div className="relative w-full max-w-96">
             <input
-              className="absolute z-0 bg-green-100 placeholder:text-green-600 w-full px-3 py-2 outline-none rounded-lg"
+              className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password")}
@@ -67,12 +75,12 @@ const Login = () => {
               Forgot Password?
             </Link>
           </div>
-          <button className="bg-primary text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4">
+          <button className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4">
             Login
           </button>
           <p>
             Already a user?{" "}
-            <Link className="text-green-800 font-semibold" to="/signup">
+            <Link className="text-primary font-semibold" to="/signup">
               Sign up
             </Link>
           </p>

@@ -1,13 +1,16 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import signupImg from "../assets/images/signup.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import { signupInputs } from "../constants/constants";
 import Input from "../components/Input";
+import { AppContext } from "../App";
 
 
-const Login = () => {
+const Signup = () => {
+  const {setUserData} = useContext(AppContext);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -19,7 +22,9 @@ const Login = () => {
 
   // handleSubmite calls onSuccess - if inputs are valid /onFailure - if inputs are invalid
   const onSuccess = (data) => {
-    console.log(data);
+    const { fullname, phoneNum, email, aadharNum } = data;
+    console.log(fullname, phoneNum, email, aadharNum);
+    setUserData({ fullname, phoneNum, email, aadharNum });
     // after successful form submission
     navigate("/select-crops");
   };
@@ -50,7 +55,7 @@ const Login = () => {
 
           <div className="relative w-full max-w-96">
             <input
-              className="absolute z-0 bg-green-100 placeholder:text-green-600 w-full px-3 py-2 outline-none rounded-lg"
+              className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Create Password"
               {...register("newPassword")}
@@ -70,7 +75,7 @@ const Login = () => {
           </div>
           <div className="relative w-full max-w-96 mt-12">
             <input
-              className="absolute z-0 bg-green-100 placeholder:text-green-600 w-full px-3 py-2 outline-none rounded-lg"
+              className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"
               {...register("confirmPassword")}
@@ -89,14 +94,12 @@ const Login = () => {
             </span>
           </div>
 
-      
-
-          <button className="bg-primary text-green-200 font-semibold max-w-96 w-full py-2 rounded-lg my-4 mt-20">
+          <button className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4 mt-20">
             Sign Up
           </button>
           <p>
             Already have a account?{" "}
-            <Link className="text-green-800 font-semibold" to="/login">
+            <Link className="text-primary font-semibold" to="/login">
               Login
             </Link>
           </p>
@@ -105,4 +108,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Signup;

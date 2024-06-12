@@ -26,8 +26,8 @@ const SensorMeter = ({ name, value }) => {
         ],
       },
     },
-    value: 50,
-    minValue: 3,
+    value: value,
+    minValue: 0,
     maxValue: 120,
   };
 

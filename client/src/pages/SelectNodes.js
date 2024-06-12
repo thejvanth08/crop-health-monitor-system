@@ -16,13 +16,13 @@ const SelectNodes = () => {
   }
 
   return (
-    <div className="w-full h-screen pt-4 rounded-xl">
+    <div className="w-full h-screen pt-4 rounded-xl px-5">
       <h1 className="text-3xl font-bold text-center">
         Select Your Sensor Nodes
       </h1>
-      <div className="bg-tertiary mx-auto w-[500px] lg:w-[700px] min-h-[480px] mt-4 mb-3 px-2 py-6 rounded-2xl shadow-lg">
+      <div className="bg-tertiary mx-auto max-w-[400px] lg:max-w-[600px] min-h-[480px] mt-4 mb-3 px-2 py-6 rounded-2xl shadow-lg">
         <form action="">
-          <div className="w-96 flex mx-auto">
+          <div className="w-10/12 flex mx-auto">
             <input
               className="bg-primary text-white w-9/12 outline-none block mx-auto px-3 py-2 rounded-xl placeholder:text-slate-300"
               type="text"
@@ -49,7 +49,7 @@ const SelectNodes = () => {
         onClick={() => {
           navigate("/overview");
         }}
-        className="block mx-auto px-3 py-2 bg-primary text-secondary text-lg font-semibold rounded-md"
+        className="block mx-auto px-3 py-2 bg-primary text-tertiary text-lg font-semibold rounded-md"
       >
         Added
       </button>

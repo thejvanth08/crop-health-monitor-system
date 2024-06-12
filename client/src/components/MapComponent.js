@@ -31,7 +31,7 @@ const MapComponent = () => {
     <MapContainer
       center={[12.963028, 80.056211]}
       zoom={40}
-      className="w-full h-full mx-auto"
+      className="w-full h-full mx-auto z-0"
     >
       <LayersControl>
         <LayersControl.BaseLayer name="Satellite" checked={true}>

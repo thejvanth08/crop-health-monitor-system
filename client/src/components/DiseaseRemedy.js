@@ -17,7 +17,7 @@ const DiseaseRemedy = ({ crop, disease, type, image, causes, remedies }) => {
     >
       {/* card */}
       <div
-        className={`bg-tertiary w-96 h-52 p-2 xl:w-[480px] mx-auto rounded-lg flex justify-center items-center gap-x-3 shadow-lg ${
+        className={`bg-tertiary w-96 h-52 p-2 lg:p-0 lg:py-2 xl:w-[460px] mx-auto rounded-lg flex justify-center items-center gap-x-3 shadow-lg ${
           popup ? "h-[80vh] w-[600px] xl:w-[900px] flex-col overflow-auto" : ""
         }`}
       >
@@ -25,7 +25,7 @@ const DiseaseRemedy = ({ crop, disease, type, image, causes, remedies }) => {
           src={image}
           alt=""
           className={`w-[45%] h-[95%] lg:w-[40%] rounded-lg object-cover ${
-            popup ? "w-52 lg:w-52 h-52 mt-[160px]" : ""
+            popup ? "w-52 lg:w-52 h-52 mt-[220px]" : ""
           }`}
         />
 
