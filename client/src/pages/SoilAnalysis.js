@@ -9,11 +9,11 @@ import { AppContext } from "../App";
 import { FaPlus } from "react-icons/fa";
 
 const SoilAnalysis = () => {
-  const {nodes} = useContext(AppContext);
-  // default currentNode -> first node in the selected nodes list
+  const { fields } = useContext(AppContext);
+  // default currentNode -> first field in the selected fields list
   let defaultNode;
-  if(nodes.length > 0) {
-    defaultNode = nodes[0] || "";
+  if(fields.length > 0) {
+    defaultNode = fields[0] || "";
   }
   const [currentNode, setCurrentNode] = useState(defaultNode);
 
@@ -29,9 +29,11 @@ const SoilAnalysis = () => {
           Field Selection
         </h2>
         <div className="flex gap-x-3 justify-center">
-          {nodes.map((node) => (
+          {fields.map(({ nodeId, cropName, index}) => (
             <NodeName
-              name={node}
+              key={index}
+              id={nodeId}
+              name={cropName}
               currentNode={currentNode}
               setCurrentNode={setCurrentNode}
             ></NodeName>

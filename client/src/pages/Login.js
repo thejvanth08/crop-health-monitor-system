@@ -3,22 +3,12 @@ import { useNavigate, Link} from "react-router-dom";
 import { useState, useEffect} from "react";
 import loginImg from "../assets/images/rice field-amico.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
-import { useTranslation } from "react-i18next";
 
 const Login = () => {
-  const { t, i18n } = useTranslation();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }} = useForm();
-
-  // useEffect(() => {
-  //   // const lang = navigator.language;
-  //   i18n.changeLanguage("ta");
-
-  //   // console.log(lang);
-  // }, []);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -41,7 +31,7 @@ const Login = () => {
           action=""
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h3 className="text-xl text-center pb-10">{ t("Login Your Account")   }</h3>
+          <h3 className="text-xl text-center pb-10">Login Your Account</h3>
           <input
             className="bg-tertiary font-semibold placeholder:text-green-500 placeholder:font-normal max-w-96 w-full px-3 py-2 mb-2 outline-none rounded-lg"
             type="email"

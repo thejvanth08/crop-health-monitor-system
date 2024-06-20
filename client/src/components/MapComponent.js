@@ -10,9 +10,11 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import leafIcon from "../assets/images/damage-leaf.png";
 import diseasedImg from "../assets/images/leaf.JPG";
+import { coordinates } from "../constants/constants";
 
 
-const MapComponent = () => {
+const MapComponent = ({ detections }) => {
+  console.log(detections);
   const diseasedCrop1 = [12.963028, 80.056211];
   const diseasedCrop2 = [12.963001, 80.056407];
   const diseasedCrop3 = [12.963673, 80.056467];
@@ -46,26 +48,17 @@ const MapComponent = () => {
         </LayersControl.BaseLayer>
       </LayersControl>
 
-      <Marker position={diseasedCrop1} icon={customIcon}>
-        <Tooltip>Diseased Crop</Tooltip>
-        <Popup>
-          <img className="rounded-md" src={diseasedImg} alt="" />
-        </Popup>
-      </Marker>
+      {detections.length > 0 && (
+        detections.map((detection) => (
+          <Marker position={detection.coordinates} icon={customIcon}>
+            <Tooltip>Diseased Crop</Tooltip>
+            <Popup>
+              <img className="rounded-md" src={detection.imageUrl} alt="" />
+            </Popup>
+          </Marker>)
+        )
+      )}
 
-      <Marker position={diseasedCrop2} icon={customIcon}>
-        <Tooltip>Diseased Crop</Tooltip>
-        <Popup>
-          <img className="rounded-md" src={diseasedImg} alt="" />
-        </Popup>
-      </Marker>
-
-      <Marker position={diseasedCrop3} icon={customIcon}>
-        <Tooltip>Diseased Crop</Tooltip>
-        <Popup>
-          <img className="rounded-md" src={diseasedImg} alt="" />
-        </Popup>
-      </Marker>
     </MapContainer>
   );
 };

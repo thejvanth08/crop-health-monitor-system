@@ -1,4 +1,4 @@
-const NodeName = ({name, currentNode, setCurrentNode}) => {
+const NodeName = ({ id, name, currentNode, setCurrentNode }) => {
   const handleSelect = () => {
     setCurrentNode(name);
   }
@@ -12,7 +12,7 @@ const NodeName = ({name, currentNode, setCurrentNode}) => {
       } `}
       onClick={handleSelect}
     >
-      {name}
+      {name} - {id}
     </button>
   );
 }
