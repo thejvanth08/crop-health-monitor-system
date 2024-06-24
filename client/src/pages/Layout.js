@@ -20,18 +20,7 @@ const Layout = () => {
           }}
           size={26}
         ></FiMenu>
-        <div className="flex items-center">
-          <select
-            name="multiLang"
-            id=""
-            className="bg-secondary px-2 py-1 mr-3 rounded-lg outline-none cursor-pointer"
-          >
-            <option value="english">English</option>
-            <option value="tamil">Tamil</option>
-            <option value="hindi">Hindi</option>
-          </select>
-          <CgProfile className="cursor-pointer" size={40} onClick={() => {navigate("profile")}}></CgProfile>
-        </div>
+        <CgProfile className="cursor-pointer" size={40} onClick={() => {navigate("profile")}}></CgProfile>
       </header>
 
       <aside

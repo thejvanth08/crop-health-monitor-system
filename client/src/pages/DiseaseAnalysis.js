@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import MapComponent from "../components/MapComponent";
-import { coordinates, diseaseRemedies } from "../constants/constants";
-import DiseaseRemedy from "../components/DiseaseRemedy";
+import AnalysisDetails from "../components/AnalysisDetails";
 
 const DiseaseAnalysis = () => {
-  const [status, useStatus] = useState(null);
+  const [status, setStatus] = useState("not uploaded");
   const [selectedFiles, setSelectedFiles] = useState(null);
   const [detections, setDetections] = useState([]);
+  const [uniqueDiseases, setUniqueDiseases] = useState([]);
   const handleFileChange = (event) => {
     setSelectedFiles(event.target.files);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setStatus("processing");
 
     if (!selectedFiles) {
       alert("Please select one or more files.");
@@ -38,7 +39,17 @@ const DiseaseAnalysis = () => {
 
       let detections = response.data;
 
-      console.log(detections);
+      // extract diseases only
+      let diseases = detections.map((detection) => detection.disease);
+      diseases = new Set(diseases);
+      // convert set to array
+      diseases = [...diseases];
+      // remove healthy crop
+      diseases = diseases.filter((disease) => !(disease.includes("healthy")));
+      setUniqueDiseases(diseases);
+      console.log(diseases);
+
+      setStatus("processed");
 
       detections = detections.map((detection) => {
         // crop image
@@ -60,7 +71,7 @@ const DiseaseAnalysis = () => {
           imageUrl: url,
           coordinates: [lat, lon]
         };
-      })
+      });
 
       setDetections(detections);
       // Optionally, reset the selected files state after successful upload
@@ -104,29 +115,8 @@ const DiseaseAnalysis = () => {
         </form>
       </div>
 
-      <div>
-        <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
-          Plots of Diseased Crops
-        </h2>
-        <div className="max-w-[800px] h-[400px] overflow-hidden shadow-xl shadow-grey rounded-md mx-auto -z-50">
-          <MapComponent detections={detections}></MapComponent>
-        </div>
-      </div>
-
-      <div>
-        <h2 className="text-primary text-xl font-semibold text-center mt-12 mb-3.5">
-          Diseased Crops & its Remedies
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-x-2 gap-y-8 lg:gap-x-0 mb-10">
-          {diseaseRemedies.map((diseaseRemedy, index) => (
-            <DiseaseRemedy key={index} {...diseaseRemedy}></DiseaseRemedy>
-          ))}
-        </div>
-      </div>
-
-      <button className="block mx-auto px-3 py-2 bg-secondary text-primary text-lg font-semibold rounded-md">
-        Download Report
-      </button>
+      <AnalysisDetails status={status} detections={detections} uniqueDiseases={uniqueDiseases} ></AnalysisDetails>
+      
     </div>
   );
 };

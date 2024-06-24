@@ -14,7 +14,7 @@ import { coordinates } from "../constants/constants";
 
 
 const MapComponent = ({ detections }) => {
-  console.log(detections);
+  // console.log(detections);
   const diseasedCrop1 = [12.963028, 80.056211];
   const diseasedCrop2 = [12.963001, 80.056407];
   const diseasedCrop3 = [12.963673, 80.056467];
