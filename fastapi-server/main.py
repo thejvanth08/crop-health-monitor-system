@@ -6,7 +6,6 @@ from torchvision import transforms
 from PIL import Image
 from utils.model import ResNet9
 import io
-import os
 
 app = FastAPI()
 
@@ -41,7 +40,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-def predict_image(image_bytes, model=disease_model):
+def detect_image(image_bytes, model=disease_model):
     image = Image.open(io.BytesIO(image_bytes))
     img_t = transform(image)
     img_u = torch.unsqueeze(img_t, 0)
@@ -51,7 +50,7 @@ def predict_image(image_bytes, model=disease_model):
     return detection
 
 @app.post("/detect/")
-async def predict(files: List[UploadFile] = File(...)):
+async def detect(files: List[UploadFile] = File(...)):
     detections = []
 
     for file in files:
@@ -60,7 +59,7 @@ async def predict(files: List[UploadFile] = File(...)):
 
         try:
             image_bytes = await file.read()
-            detection = predict_image(image_bytes)
+            detection = detect_image(image_bytes)
             detections.append({"filename": file.filename, "disease": detection})
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Error processing file {file.filename}: {str(e)}")

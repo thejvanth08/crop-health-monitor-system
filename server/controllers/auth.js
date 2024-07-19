@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 const signup = (req, res) => {
   console.log(req.body);
   return;
@@ -9,7 +11,6 @@ const login = (req, res) => {
 };
 
 module.exports = {
-  signup, 
-  login
+  signup,
+  login,
 };
-
