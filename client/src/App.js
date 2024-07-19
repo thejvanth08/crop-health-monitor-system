@@ -1,5 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import {Home, Login, Signup, ResetPassword, Overview, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout, SelectCrops, SelectNodes} from "./pages"
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4000/";
+// send credentials like cookies to server which is from different origin
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link} from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState } from "react";
 import loginImg from "../assets/images/rice field-amico.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,10 +11,13 @@ const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }} = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // after successful form submission
-    navigate("/overview");
+  const onSubmit =  async (formData) => {
+    try {
+      const { data } = await axios.post("/auth/login", formData);
+      navigate("/overview");
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -65,7 +69,7 @@ const Login = () => {
               Forgot Password?
             </Link>
           </div>
-          <button className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4">
+          <button type="submit" className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4">
             Login
           </button>
           <p>

@@ -28,7 +28,7 @@ const DiseaseAnalysis = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:4000/user/detect-diseases",
+        "/user/detect-diseases",
         formData,
         {
           headers: {
