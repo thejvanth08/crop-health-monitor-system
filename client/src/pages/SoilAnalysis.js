@@ -2,14 +2,14 @@ import SensorChart from "../components/SensorChart";
 import SensorMeter from "../components/SensorMeter";
 import SensorName from "../components/SensorName";
 import NodeName from "../components/NodeName";
-import {useContext, useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sensors } from "../constants/constants";
-import { AppContext } from "../App";
+import { useAppContext } from "../UserContext";
 import { FaPlus } from "react-icons/fa";
 
 const SoilAnalysis = () => {
-  const { fields } = useContext(AppContext);
+  const { fields } = useAppContext();
   // default currentNode -> first field in the selected fields list
   let defaultNode;
   if(fields.length > 0) {

@@ -1,7 +1,7 @@
 import WeatherCard from "../components/WeatherCard";
 import { weatherData } from "../constants/constants";
-import { useContext, useState } from "react";
-import { AppContext } from "../App";
+import { useState } from "react";
+import { useAppContext } from "../UserContext";
 import CropName from "../components/CropName";
 import IdealConditions from "../components/IdealConditions";
 import { FaPlus } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Overview = () => {
   const navigate = useNavigate();
-  const { overviewCrops } = useContext(AppContext);
+  const { overviewCrops } = useAppContext();
   // default selected crop -> 1st crop from selected list if found
   const defaultCrop = overviewCrops[0] || null;
   const [selectedCrop, setSelectedCrop] = useState(defaultCrop);

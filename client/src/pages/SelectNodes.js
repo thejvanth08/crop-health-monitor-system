@@ -1,9 +1,9 @@
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../App";
+import { useAppContext } from "../UserContext";
 
 const SelectNodes = () => {
-  const { fields, setFields } = useContext(AppContext);
+  const { fields, setFields } = useAppContext();
   const nodeIdRef = useRef(null);
   const cropNameRef = useRef(null);
 

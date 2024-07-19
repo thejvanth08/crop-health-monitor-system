@@ -42,6 +42,7 @@ const detectDiseases = async (req, res) => {
         const cropImage = fs.readFileSync(filePath, {
           encoding: "base64",
         });
+        
         return {
           ...detection,
           coordinates,

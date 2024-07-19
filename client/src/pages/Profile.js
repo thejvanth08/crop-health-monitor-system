@@ -1,8 +1,7 @@
-import {useContext} from "react";
-import { AppContext } from "../App";
+import { useAppContext } from "../UserContext";
 
 const Profile = () => {
-  const {userData, setUserData} = useContext(AppContext);
+  const {userData, setUserData} = useAppContext();
   if(userData) {  
     const { fullname, phoneNum, email, aadharNum } = userData;
     return (

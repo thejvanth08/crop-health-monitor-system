@@ -1,9 +1,7 @@
 import {crops} from "../constants/constants";
 import Crop from "../components/Crop";
-import { useContext } from "react";
+import { useAppContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
-
-import { AppContext } from "../App";
 
 // to extract only the names
 const allCrops = crops.map(crop => crop.name);
@@ -13,7 +11,7 @@ const SelectCrops = () => {
   const navigate = useNavigate();
   
   // getting from global context - user selected crops
-  const {overviewCrops, setOverviewCrops} = useContext(AppContext);
+  const {overviewCrops, setOverviewCrops} = useAppContext();
 
   return (
     <div className="w-full h-screen pt-4 rounded-xl px-5">

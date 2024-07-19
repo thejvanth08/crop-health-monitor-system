@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import signupImg from "../assets/images/signup.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import { signupInputs } from "../constants/constants";
 import Input from "../components/Input";
-import { AppContext } from "../App";
+import { useAppContext } from "../UserContext";
 
 
 const Signup = () => {
-  const {setUserData} = useContext(AppContext);
+  const {setUserData} = useAppContext();
 
   const [showPassword, setShowPassword] = useState(false);
 
