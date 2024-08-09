@@ -4,8 +4,15 @@ const User = require("../models/User");
 const jwtSecret = process.env.JWT_SECRET;
 
 const signup = async (req, res) => {
-  console.log("signing up", req.body);
-  return;
+  const { email, newPassword } = req.body;
+  try {
+    const result = await User.create({ email: email, password: newPassword });
+    console.log(result);
+    res.status(201).json({ data: "success" });
+  } catch (err) {
+    console.log(err);
+    res.status(401).json({ data: "failed" });
+  }
 };
 
 const login = async (req, res) => {

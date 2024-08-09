@@ -13,7 +13,13 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  }),
+);
+
 // Serve static files (optional, if needed)
 app.use(express.static("public"));
 app.use(express.json());

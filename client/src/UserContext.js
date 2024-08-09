@@ -12,13 +12,16 @@ const UserContext = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   const contextValue = {
-    overviewCrops, setOverviewCrops, fields, setFields, userData, setUserData
+    overviewCrops,
+    setOverviewCrops,
+    fields,
+    setFields,
+    userData,
+    setUserData,
   };
 
   return (
-    <AppContext.Provider value={contextValue}>
-      {children}
-    </AppContext.Provider>
-  )
-}
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+  );
+};
 export default UserContext;

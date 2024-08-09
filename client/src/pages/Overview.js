@@ -6,10 +6,13 @@ import CropName from "../components/CropName";
 import IdealConditions from "../components/IdealConditions";
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAllOverviewCrops } from "../app/features/overview-crops/overviewCropsSlice";
 
 const Overview = () => {
   const navigate = useNavigate();
-  const { overviewCrops } = useAppContext();
+  const overviewCrops = useSelector(selectAllOverviewCrops);
+  // const { overviewCrops } = useAppContext();
   // default selected crop -> 1st crop from selected list if found
   const defaultCrop = overviewCrops[0] || null;
   const [selectedCrop, setSelectedCrop] = useState(defaultCrop);
@@ -24,8 +27,8 @@ const Overview = () => {
               <CropName
                 key={overviewCrop}
                 name={overviewCrop}
-                setSelectedCrop={setSelectedCrop}
                 selectedCrop={selectedCrop}
+                setSelectedCrop={setSelectedCrop}
               />
             ))}
             <button
@@ -41,9 +44,9 @@ const Overview = () => {
           <IdealConditions name={selectedCrop}></IdealConditions>
         </div>
         <div className="hidden lg:block w-96">
-          { weatherData.map((weatherDatum) => (
+          {weatherData.map((weatherDatum) => (
             <WeatherCard {...weatherDatum}></WeatherCard>
-          )) }
+          ))}
         </div>
       </div>
     </div>

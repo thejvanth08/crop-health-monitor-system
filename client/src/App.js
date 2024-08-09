@@ -1,8 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-import {Home, Login, Signup, ResetPassword, Overview, DiseaseAnalysis, SoilAnalysis, Reports, Profile, Error, Layout, SelectCrops, SelectNodes} from "./pages"
+import {
+  Home,
+  Login,
+  Signup,
+  ResetPassword,
+  Overview,
+  DiseaseAnalysis,
+  SoilAnalysis,
+  Reports,
+  Profile,
+  Error,
+  Layout,
+  SelectCrops,
+  SelectNodes,
+} from "./pages";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000/";
+axios.defaults.baseURL = "http://localhost:4000";
 // send credentials like cookies to server which is from different origin
 axios.defaults.withCredentials = true;
 
@@ -16,10 +30,7 @@ const App = () => {
       <Route path="/select-nodes" element={<SelectNodes />}></Route>
       <Route path="/" element={<Layout />}>
         <Route path="overview" element={<Overview />}></Route>
-        <Route
-          path="disease-analysis"
-          element={<DiseaseAnalysis />}
-        ></Route>
+        <Route path="disease-analysis" element={<DiseaseAnalysis />}></Route>
         <Route path="soil-analysis" element={<SoilAnalysis />}></Route>
         <Route path="reports" element={<Reports />}></Route>
         <Route path="profile" element={<Profile />}></Route>
@@ -28,5 +39,5 @@ const App = () => {
       <Route path="*" element={<Error />}></Route>
     </Routes>
   );
-}
+};
 export default App;

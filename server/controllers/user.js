@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const getGpsCoordinates = require("../utilities/get-gps-coordinates");
 
-
 const detectDiseases = async (req, res) => {
   console.log("predicting-diseases");
   try {
@@ -26,36 +25,43 @@ const detectDiseases = async (req, res) => {
 
     // Make a POST request to FastAPI
     const fastapiEndpoint = process.env.FASTAPI_URL;
-    console.log(fastapiEndpoint);
+    // console.log(fastapiEndpoint);
     const response = await axios.post(fastapiEndpoint, formData, {
       headers: formData.getHeaders(),
     });
 
     let detections = response.data.detections;
+    // console.log(detections);
 
     // Use async/await to get GPS coordinates
     detections = await Promise.all(
       detections.map(async (detection) => {
-        const filePath = path.join(__dirname, "..", "uploads", detection.filename);
+        const filePath = path.join(
+          __dirname,
+          "..",
+          "uploads",
+          detection.filename,
+        );
+        console.log(filePath);
         const coordinates = await getGpsCoordinates(filePath);
 
         const cropImage = fs.readFileSync(filePath, {
           encoding: "base64",
         });
-        
+
         return {
           ...detection,
           coordinates,
           cropImage,
         };
-      })
+      }),
     );
 
     // Cleanup temp files (optional)
-    files.forEach((file) => {
-      const filePath = path.join(__dirname, "..", "uploads", file.originalname);
-      fs.unlinkSync(filePath);
-    });
+    // files.forEach((file) => {
+    //   const filePath = path.join(__dirname, "..", "uploads", file.originalname);
+    //   fs.unlinkSync(filePath);
+    // });
 
     res.json(detections);
   } catch (error) {

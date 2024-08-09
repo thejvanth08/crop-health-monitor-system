@@ -3,9 +3,9 @@ const authenticate = (req, res, next) => {
   console.log("authenticating");
   try {
     next();
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
-}
+};
 
 module.exports = authenticate;

@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { sensors } from "../constants/constants";
 import { useAppContext } from "../UserContext";
 import { FaPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { selectAllFields } from "../app/features/fields/fieldsSlice";
 
 const SoilAnalysis = () => {
-  const { fields } = useAppContext();
+  const fields = useSelector(selectAllFields);
   // default currentNode -> first field in the selected fields list
   let defaultNode;
-  if(fields.length > 0) {
+  if (fields.length > 0) {
     defaultNode = fields[0] || "";
   }
   const [currentNode, setCurrentNode] = useState(defaultNode);
@@ -29,7 +31,7 @@ const SoilAnalysis = () => {
           Field Selection
         </h2>
         <div className="flex gap-x-3 justify-center">
-          {fields.map(({ nodeId, cropName, index}) => (
+          {fields.map(({ nodeId, cropName, index }) => (
             <NodeName
               key={index}
               id={nodeId}
@@ -41,7 +43,9 @@ const SoilAnalysis = () => {
           <button
             className="text-xl font-bold w-16 py-2 rounded-lg 
                 bg-secondary text-primary flex justify-center items-center"
-            onClick={ () => {navigate("/select-nodes")} }
+            onClick={() => {
+              navigate("/select-nodes");
+            }}
           >
             <FaPlus></FaPlus>
           </button>
@@ -52,9 +56,13 @@ const SoilAnalysis = () => {
           Time Series Sensor Data
         </h2>
         <div className="flex flex-wrap w-full justify-center mb-4">
-          {
-            sensors.map((sensor) => <SensorName name={sensor.name} currentSensor={currentSensor} setCurrentSensor={setCurrentSensor}></SensorName> )
-          }
+          {sensors.map((sensor) => (
+            <SensorName
+              name={sensor.name}
+              currentSensor={currentSensor}
+              setCurrentSensor={setCurrentSensor}
+            ></SensorName>
+          ))}
         </div>
         <SensorChart value={currentSensor}></SensorChart>
       </div>
@@ -91,5 +99,5 @@ const SoilAnalysis = () => {
       </div>
     </div>
   );
-}
+};
 export default SoilAnalysis;

@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../UserContext";
+import { useSelector, useDispatch } from "react-redux";
+import { add, selectAllFields } from "../app/features/fields/fieldsSlice";
 
 const SelectNodes = () => {
-  const { fields, setFields } = useAppContext();
+  const fields = useSelector(selectAllFields);
+  const dispatch = useDispatch();
+
   const nodeIdRef = useRef(null);
   const cropNameRef = useRef(null);
 
@@ -13,13 +16,15 @@ const SelectNodes = () => {
     e.preventDefault();
     const fieldNodeId = nodeIdRef.current.value;
     const fieldCropName = cropNameRef.current.value;
-    setFields([...fields, {
-      nodeId: fieldNodeId,
-      cropName: fieldCropName
-    }]);
+    dispatch(
+      add({
+        nodeId: fieldNodeId,
+        cropName: fieldCropName,
+      }),
+    );
     nodeIdRef.current.value = "";
     cropNameRef.current.value = "";
-  }
+  };
 
   return (
     <div className="w-full h-screen pt-4 rounded-xl px-5">
@@ -57,7 +62,9 @@ const SelectNodes = () => {
             {fields.map((field, index) => (
               <div className="text-primary font-bold w-[90%] px-6 py-2 mx-auto mb-2 border-2 border-primary rounded-xl lg:w-[70%]">
                 <span className="text-md">{index + 1}.</span>{" "}
-                <span className="text-xl pl-2">{field.nodeId} - {field.cropName}</span>
+                <span className="text-xl pl-2">
+                  {field.nodeId} - {field.cropName}
+                </span>
               </div>
             ))}
           </div>
@@ -73,5 +80,5 @@ const SelectNodes = () => {
       </button>
     </div>
   );
-}
+};
 export default SelectNodes;

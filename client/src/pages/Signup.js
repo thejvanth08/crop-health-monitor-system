@@ -6,13 +6,12 @@ import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import { signupInputs } from "../constants/constants";
 import Input from "../components/Input";
 import { useAppContext } from "../UserContext";
-import { yupResolver } from "@hookform/resolvers/yup"
+import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import * as Yup from "yup";
 
-
 const Signup = () => {
-  const {setUserData} = useAppContext();
+  // const { setUserData } = useAppContext();
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -21,15 +20,12 @@ const Signup = () => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-
-    newPassword: Yup.string()
-      .required("Password is required")
-      .min(8, "Password must be at least 8 characters")
-      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .matches(/[0-9]/, "Password must contain at least one number")
-      .matches(/[\W_]/, "Password must contain at least one special character"),
-
+    newPassword: Yup.string().required("Password is required"),
+    // .min(4, "Password must be at least 4 characters")
+    // .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    // .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    // .matches(/[0-9]/, "Password must contain at least one number")
+    // .matches(/[\W_]/, "Password must contain at least one special character"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
       .required("Confirm Password is required"),
@@ -40,23 +36,23 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schemaValidation)
+    resolver: yupResolver(schemaValidation),
   });
 
   const onSuccess = async (formData) => {
     console.log(formData);
     try {
-      // const { data } = await axios.post("/auth/signup", )
+      const { data } = await axios.post("/auth/signup", formData);
+      navigate("/select-crops");
     } catch (err) {
-
+      console.log("error happened during signup", err);
     }
     // after successful form submission
-    navigate("/select-crops");
   };
   const onFailure = (formData) => {
     // alert("invalid input");
   };
-  
+
   return (
     <div className="w-full h-screen flex">
       <div className="bg-primary hidden w-1/2 h-full lg:flex justify-center items-center">
@@ -77,7 +73,9 @@ const Signup = () => {
           {signupInputs.map((input) => {
             return <Input {...input} register={register}></Input>;
           })}
-          {errors?.email && <p className="text-black mt-1">{errors?.email?.message}</p>}
+          {errors?.email && (
+            <p className="text-black mt-1">{errors?.email?.message}</p>
+          )}
           <div className="relative w-full max-w-96">
             <input
               className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
@@ -98,7 +96,9 @@ const Signup = () => {
               )}
             </span>
           </div>
-          {errors?.newPassword && <p className="text-black mt-1">{errors?.newPassword?.message}</p>}
+          {errors?.newPassword && (
+            <p className="text-black mt-1">{errors?.newPassword?.message}</p>
+          )}
           <div className="relative w-full max-w-96 mt-12">
             <input
               className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
@@ -119,9 +119,13 @@ const Signup = () => {
               )}
             </span>
           </div>
-          {errors?.confirmPassword && <p className="text-black mt-1">{errors?.confirmPassword?.message}</p> }
+          {errors?.confirmPassword && (
+            <p className="text-black mt-1">
+              {errors?.confirmPassword?.message}
+            </p>
+          )}
 
-          <button className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4 mt-20">
+          <button className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rrounded-lg my-4 mt-20">
             Sign Up
           </button>
           <p>

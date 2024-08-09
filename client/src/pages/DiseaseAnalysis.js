@@ -27,15 +27,11 @@ const DiseaseAnalysis = () => {
     }
 
     try {
-      const response = await axios.post(
-        "/user/detect-diseases",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/user/detect-diseases", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       let detections = response.data;
 
@@ -45,7 +41,7 @@ const DiseaseAnalysis = () => {
       // convert set to array
       diseases = [...diseases];
       // remove healthy crop
-      diseases = diseases.filter((disease) => !(disease.includes("healthy")));
+      diseases = diseases.filter((disease) => !disease.includes("healthy"));
       setUniqueDiseases(diseases);
       console.log(diseases);
 
@@ -69,7 +65,7 @@ const DiseaseAnalysis = () => {
         return {
           ...detection,
           imageUrl: url,
-          coordinates: [lat, lon]
+          coordinates: [lat, lon],
         };
       });
 
@@ -115,8 +111,11 @@ const DiseaseAnalysis = () => {
         </form>
       </div>
 
-      <AnalysisDetails status={status} detections={detections} uniqueDiseases={uniqueDiseases} ></AnalysisDetails>
-      
+      <AnalysisDetails
+        status={status}
+        detections={detections}
+        uniqueDiseases={uniqueDiseases}
+      ></AnalysisDetails>
     </div>
   );
 };
