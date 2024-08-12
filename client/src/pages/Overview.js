@@ -8,8 +8,11 @@ import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAllOverviewCrops } from "../app/features/overview-crops/overviewCropsSlice";
+import { selectUserData } from "../app/features/user-data/userDataSlice";
 
 const Overview = () => {
+  const userData = useSelector(selectUserData);
+  // console.log(userData);
   const navigate = useNavigate();
   const overviewCrops = useSelector(selectAllOverviewCrops);
   // const { overviewCrops } = useAppContext();
@@ -44,8 +47,8 @@ const Overview = () => {
           <IdealConditions name={selectedCrop}></IdealConditions>
         </div>
         <div className="hidden lg:block w-96">
-          {weatherData.map((weatherDatum) => (
-            <WeatherCard {...weatherDatum}></WeatherCard>
+          {weatherData.map((weatherDatum, index) => (
+            <WeatherCard key={index} {...weatherDatum}></WeatherCard>
           ))}
         </div>
       </div>

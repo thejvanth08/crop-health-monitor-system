@@ -10,7 +10,7 @@ const allCrops = crops.map((crop) => crop.name);
 const SelectCrops = () => {
   const navigate = useNavigate();
   const overviewCrops = useSelector(selectAllOverviewCrops);
-  console.log(overviewCrops);
+  // console.log(overviewCrops);
 
   return (
     <div className="w-full h-screen pt-4 rounded-xl px-5">
@@ -23,7 +23,7 @@ const SelectCrops = () => {
         />
         <div className="mt-8 px-4 lg:px-10">
           {allCrops.map((crop) => (
-            <Crop crop={crop} overviewCrops={overviewCrops}></Crop>
+            <Crop key={crop} crop={crop} overviewCrops={overviewCrops}></Crop>
           ))}
         </div>
       </div>

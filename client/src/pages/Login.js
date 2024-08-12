@@ -1,24 +1,39 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import loginImg from "../assets/images/rice field-amico.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { set } from "../app/features/user-data/userDataSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit =  async (formData) => {
+  const onSubmit = async (formData) => {
     try {
-      const { data } = await axios.post("/auth/login", formData);
+      const {
+        data: { data },
+      } = await axios.post("/auth/login", formData);
+      const payload = {
+        id: data.userId,
+        email: data.email,
+      };
+      // console.log(payload);
+      dispatch(set(payload));
       navigate("/overview");
-    } catch(err) {
-      console.log(err);
+    } catch (err) {
+      console.log("error happened during login", err);
     }
-  }
+  };
 
   return (
     <div className="w-full h-screen flex">
@@ -48,6 +63,7 @@ const Login = () => {
               className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
+              autoComplete="on"
               {...register("password")}
             />
             <span
@@ -65,11 +81,17 @@ const Login = () => {
           </div>
 
           <div className="max-w-96 w-full mt-10">
-            <Link className="text-slate-500 float-right text-sm" to="/reset-password">
+            <Link
+              className="text-slate-500 float-right text-sm"
+              to="/reset-password"
+            >
               Forgot Password?
             </Link>
           </div>
-          <button type="submit" className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4">
+          <button
+            type="submit"
+            className="bg-primary text-tertiary font-semibold max-w-96 w-full py-2 rounded-lg my-4"
+          >
             Login
           </button>
           <p>
@@ -82,5 +104,5 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 export default Login;

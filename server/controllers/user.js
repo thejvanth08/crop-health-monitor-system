@@ -72,6 +72,16 @@ const detectDiseases = async (req, res) => {
   }
 };
 
+const verifyUser = (req, res) => {
+  if (req.user) {
+    // console.log(req.user);
+    res.status(200).json({ status: "success", data: req.user });
+  } else {
+    res.status(400).json({ status: "failed" });
+  }
+};
+
 module.exports = {
+  verifyUser,
   detectDiseases,
 };

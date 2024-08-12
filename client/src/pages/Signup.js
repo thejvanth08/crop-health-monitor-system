@@ -5,13 +5,15 @@ import signupImg from "../assets/images/signup.svg";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import { signupInputs } from "../constants/constants";
 import Input from "../components/Input";
-import { useAppContext } from "../UserContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import * as Yup from "yup";
+import { set } from "../app/features/user-data/userDataSlice";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
-  // const { setUserData } = useAppContext();
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -40,9 +42,17 @@ const Signup = () => {
   });
 
   const onSuccess = async (formData) => {
-    console.log(formData);
+    // console.log(formData);
     try {
-      const { data } = await axios.post("/auth/signup", formData);
+      const {
+        data: { data },
+      } = await axios.post("/auth/signup", formData);
+      const userId = data.userId;
+      const payload = {
+        id: userId,
+        email: data.email,
+      };
+      dispatch(set(payload));
       navigate("/select-crops");
     } catch (err) {
       console.log("error happened during signup", err);
@@ -71,7 +81,9 @@ const Signup = () => {
           <h3 className="text-xl text-center pb-10">Create Your New Account</h3>
 
           {signupInputs.map((input) => {
-            return <Input {...input} register={register}></Input>;
+            return (
+              <Input key={input.name} {...input} register={register}></Input>
+            );
           })}
           {errors?.email && (
             <p className="text-black mt-1">{errors?.email?.message}</p>
@@ -81,6 +93,7 @@ const Signup = () => {
               className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Create Password"
+              autoComplete="on"
               {...register("newPassword")}
             />
             <span
@@ -104,6 +117,7 @@ const Signup = () => {
               className="absolute z-0 bg-tertiary placeholder:text-green-500 w-full px-3 py-2 outline-none rounded-lg"
               type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"
+              autoComplete="on"
               {...register("confirmPassword")}
             />
             <span

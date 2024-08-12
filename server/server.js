@@ -4,6 +4,7 @@ require("express-async-errors");
 require("dotenv").config();
 const connectDB = require("./db/connect");
 const authenticate = require("./middleware/authenticate");
+const cookieParser = require("cookie-parser");
 
 // routers
 const authRouter = require("./routes/auth");
@@ -23,6 +24,7 @@ app.use(
 // Serve static files (optional, if needed)
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/user", authenticate, userRouter);

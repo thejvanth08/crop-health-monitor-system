@@ -60,7 +60,10 @@ const SelectNodes = () => {
           </div>
           <div className="mt-6 w-full">
             {fields.map((field, index) => (
-              <div className="text-primary font-bold w-[90%] px-6 py-2 mx-auto mb-2 border-2 border-primary rounded-xl lg:w-[70%]">
+              <div
+                key={field.nodeId}
+                className="text-primary font-bold w-[90%] px-6 py-2 mx-auto mb-2 border-2 border-primary rounded-xl lg:w-[70%]"
+              >
                 <span className="text-md">{index + 1}.</span>{" "}
                 <span className="text-xl pl-2">
                   {field.nodeId} - {field.cropName}

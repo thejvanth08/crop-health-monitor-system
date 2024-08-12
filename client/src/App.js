@@ -14,6 +14,7 @@ import {
   SelectCrops,
   SelectNodes,
 } from "./pages";
+import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:4000";
@@ -28,7 +29,7 @@ const App = () => {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/select-crops" element={<SelectCrops />}></Route>
       <Route path="/select-nodes" element={<SelectNodes />}></Route>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<ProtectedRoute />}>
         <Route path="overview" element={<Overview />}></Route>
         <Route path="disease-analysis" element={<DiseaseAnalysis />}></Route>
         <Route path="soil-analysis" element={<SoilAnalysis />}></Route>
