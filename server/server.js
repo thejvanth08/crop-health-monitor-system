@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 // routers
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
-
+const sensorRouter = require("./routes/sensor");
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use("/sensor", sensorRouter);
 app.use("/auth", authRouter);
 app.use("/user", authenticate, userRouter);
 

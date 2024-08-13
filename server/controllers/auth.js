@@ -16,7 +16,7 @@ const signup = async (req, res) => {
       expiresIn: "10d",
     });
 
-    console.log(token);
+    // console.log(token);
     res.cookie("token", token);
     res
       .status(201)
@@ -33,6 +33,9 @@ const login = async (req, res) => {
   try {
     const foundUser = await User.findOne({ email: email });
 
+    if (!foundUser) {
+      res.status(404).json({ status: "failed" });
+    }
     if (foundUser.password == password) {
       const payload = {
         id: foundUser._id,

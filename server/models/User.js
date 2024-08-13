@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const fieldSchema = new mongoose.Schema({
+  nodeId: {
+    type: String,
+    required: true,
+  },
+  cropName: {
+    type: String,
+    required: true,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -8,6 +19,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  details: {
+    overviewCrops: [String],
+    fields: [Object],
   },
 });
 

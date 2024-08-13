@@ -3,6 +3,7 @@ const FormData = require("form-data");
 const fs = require("fs");
 const path = require("path");
 const getGpsCoordinates = require("../utilities/get-gps-coordinates");
+const User = require("../models/User");
 
 const detectDiseases = async (req, res) => {
   console.log("predicting-diseases");
@@ -81,7 +82,29 @@ const verifyUser = (req, res) => {
   }
 };
 
+const addDetails = async (req, res) => {
+  const details = req.body;
+  try {
+    const foundUser = await User.findOne({ _id: req.user.id });
+
+    if (!foundUser) {
+      return res
+        .status(404)
+        .json({ status: "failed", message: "User not found" });
+    }
+
+    foundUser.details = details;
+    // console.log(foundUser);
+
+    await foundUser.save(); // Save the document after modifying it
+    res.status(201).json({ status: "success" });
+  } catch (err) {
+    res.status(400).json({ status: "failed" });
+  }
+};
+
 module.exports = {
   verifyUser,
   detectDiseases,
+  addDetails,
 };

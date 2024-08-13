@@ -3,6 +3,7 @@ import Crop from "../components/Crop";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAllOverviewCrops } from "../app/features/overview-crops/overviewCropsSlice";
+import axios from "axios";
 
 // to extract only the names
 const allCrops = crops.map((crop) => crop.name);
@@ -11,6 +12,10 @@ const SelectCrops = () => {
   const navigate = useNavigate();
   const overviewCrops = useSelector(selectAllOverviewCrops);
   // console.log(overviewCrops);
+
+  const handleSelected = () => {
+    navigate("/select-nodes");
+  };
 
   return (
     <div className="w-full h-screen pt-4 rounded-xl px-5">
@@ -28,10 +33,7 @@ const SelectCrops = () => {
         </div>
       </div>
       <button
-        onClick={() => {
-          console.log(overviewCrops);
-          navigate("/select-nodes");
-        }}
+        onClick={handleSelected}
         className="block mx-auto px-3 py-2 bg-primary text-tertiary text-lg font-semibold rounded-md"
       >
         Selected

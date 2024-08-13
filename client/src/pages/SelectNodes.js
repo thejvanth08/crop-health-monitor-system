@@ -2,9 +2,13 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { add, selectAllFields } from "../app/features/fields/fieldsSlice";
+import { selectAllOverviewCrops } from "../app/features/overview-crops/overviewCropsSlice";
+import axios from "axios";
 
 const SelectNodes = () => {
   const fields = useSelector(selectAllFields);
+  const overviewCrops = useSelector(selectAllOverviewCrops);
+
   const dispatch = useDispatch();
 
   const nodeIdRef = useRef(null);
@@ -24,6 +28,22 @@ const SelectNodes = () => {
     );
     nodeIdRef.current.value = "";
     cropNameRef.current.value = "";
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const { data } = await axios.post("/user/add-details", {
+        overviewCrops: overviewCrops,
+        fields: fields,
+      });
+
+      // console.log(data);
+
+      navigate("/overview");
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -48,8 +68,9 @@ const SelectNodes = () => {
               ref={cropNameRef}
             />
             <datalist id="crops">
-              <option>hi</option>
-              <option>hi</option>
+              <option>Coconut</option>
+              <option>Mango</option>
+              <option>Tomato</option>
             </datalist>
             <button
               onClick={handleAdd}
@@ -74,9 +95,7 @@ const SelectNodes = () => {
         </form>
       </div>
       <button
-        onClick={() => {
-          navigate("/overview");
-        }}
+        onClick={handleSubmit}
         className="block mx-auto px-3 py-2 bg-primary text-tertiary text-lg font-semibold rounded-md"
       >
         Added
