@@ -5,6 +5,8 @@ import axios from "axios";
 import { Layout } from "./pages";
 import { useSelector, useDispatch } from "react-redux";
 import { set, selectUserData } from "./app/features/user-data/userDataSlice";
+import { syncFields } from "./app/features/fields/fieldsSlice";
+import { syncOverviewCrops } from "./app/features/overview-crops/overviewCropsSlice";
 
 const ProtectedRoute = () => {
   const userData = useSelector(selectUserData);
@@ -28,6 +30,16 @@ const ProtectedRoute = () => {
           console.log(err);
           navigate("/login"); // Redirect to login if verification fails
         });
+
+      const getUserData = async () => {
+        const {
+          data: { data },
+        } = await axios.get("/user/details");
+        const { fields, overviewCrops } = data;
+        dispatch(syncFields(fields));
+        dispatch(syncOverviewCrops(overviewCrops));
+      };
+      getUserData();
     } else {
       navigate("/login"); // Redirect to login if token is not available
     }

@@ -12,6 +12,9 @@ export const overviewCropsSlice = createSlice({
     remove: (state, action) => {
       state.value = state.value.filter((item) => item != action.payload);
     },
+    syncOverviewCrops: (state, action) => {
+      state.value = action.payload;
+    },
   },
 });
 
@@ -20,7 +23,7 @@ export const overviewCropsSlice = createSlice({
 export const selectAllOverviewCrops = (state) => state.overviewCrops.value;
 
 // action creator functions (which returns action objects when it is invoked)
-export const { add, remove } = overviewCropsSlice.actions;
+export const { add, remove, syncOverviewCrops } = overviewCropsSlice.actions;
 
 // this is for redux store
 export default overviewCropsSlice.reducer;

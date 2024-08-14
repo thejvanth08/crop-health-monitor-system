@@ -3,13 +3,15 @@ const upload = require("../middleware/upload");
 const {
   detectDiseases,
   verifyUser,
-  addDetails,
+  addUserDetails,
+  getUserDetails,
 } = require("../controllers/user");
 
 const router = express.Router();
 
 router.post("/verify", verifyUser);
 router.post("/detect-diseases", upload.array("files"), detectDiseases);
-router.post("/add-details", addDetails);
+router.post("/details", addUserDetails);
+router.get("/details", getUserDetails);
 
 module.exports = router;

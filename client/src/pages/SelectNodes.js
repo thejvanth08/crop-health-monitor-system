@@ -32,15 +32,12 @@ const SelectNodes = () => {
 
   const handleSubmit = async () => {
     try {
-      const { data } = await axios.post("/user/add-details", {
+      const { data } = await axios.post("/user/details", {
         overviewCrops: overviewCrops,
         fields: fields,
       });
 
-      // console.log(data);
-
       navigate("/overview");
-      console.log(data);
     } catch (err) {
       console.log(err);
     }

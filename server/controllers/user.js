@@ -82,7 +82,7 @@ const verifyUser = (req, res) => {
   }
 };
 
-const addDetails = async (req, res) => {
+const addUserDetails = async (req, res) => {
   const details = req.body;
   try {
     const foundUser = await User.findOne({ _id: req.user.id });
@@ -103,8 +103,25 @@ const addDetails = async (req, res) => {
   }
 };
 
+const getUserDetails = async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const {
+      details: { overviewCrops, fields },
+    } = await User.findOne({ _id: userId }).select("details");
+
+    // console.log(overviewCrops, fields);
+    res
+      .status(200)
+      .json({ status: "success", data: { overviewCrops, fields } });
+  } catch (err) {
+    res.status(400).json({ status: "failed" });
+  }
+};
+
 module.exports = {
   verifyUser,
   detectDiseases,
-  addDetails,
+  addUserDetails,
+  getUserDetails,
 };

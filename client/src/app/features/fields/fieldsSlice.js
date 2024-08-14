@@ -9,6 +9,9 @@ export const fieldsSlice = createSlice({
     add: (state, action) => {
       state.value.push(action.payload);
     },
+    syncFields: (state, action) => {
+      state.value = action.payload;
+    },
   },
 });
 
@@ -16,7 +19,7 @@ export const fieldsSlice = createSlice({
 export const selectAllFields = (state) => state.fields.value;
 
 // action creators
-export const { add } = fieldsSlice.actions;
+export const { add, syncFields } = fieldsSlice.actions;
 
 // for redux store
 export default fieldsSlice.reducer;
