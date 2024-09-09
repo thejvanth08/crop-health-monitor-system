@@ -18,6 +18,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:4000";
+
 // send credentials like cookies to server which is from different origin
 axios.defaults.withCredentials = true;
 

@@ -12,11 +12,11 @@ const userRouter = require("./routes/user");
 const sensorRouter = require("./routes/sensor");
 const port = process.env.PORT || 3000;
 const app = express();
-
+const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
 // middlewares
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: corsOrigin,
     credentials: true,
   }),
 );
