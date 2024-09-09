@@ -12,15 +12,16 @@ import { selectAllFields } from "../app/features/fields/fieldsSlice";
 
 const SoilAnalysis = () => {
   const fields = useSelector(selectAllFields);
-  // default currentNode -> first field in the selected fields list
+  // default currentField -> first field in the selected fields list
   let defaultNode;
   if (fields.length > 0) {
     defaultNode = fields[0] || "";
   }
-  const [currentNode, setCurrentNode] = useState(defaultNode);
 
+  const [currentField, setCurrentField] = useState(defaultNode);
   const [currentSensor, setCurrentSensor] = useState(sensors[0].name);
 
+  console.log(currentField);
   const navigate = useNavigate();
 
   return (
@@ -31,13 +32,12 @@ const SoilAnalysis = () => {
           Field Selection
         </h2>
         <div className="flex gap-x-3 justify-center">
-          {fields.map(({ nodeId, cropName, index }) => (
+          {fields.map((field, index) => (
             <NodeName
               key={index}
-              id={nodeId}
-              name={cropName}
-              currentNode={currentNode}
-              setCurrentNode={setCurrentNode}
+              field={field}
+              currentField={currentField}
+              setCurrentField={setCurrentField}
             ></NodeName>
           ))}
           <button
@@ -58,6 +58,7 @@ const SoilAnalysis = () => {
         <div className="flex flex-wrap w-full justify-center mb-4">
           {sensors.map((sensor) => (
             <SensorName
+              key={sensor.name}
               name={sensor.name}
               currentSensor={currentSensor}
               setCurrentSensor={setCurrentSensor}
@@ -73,7 +74,7 @@ const SoilAnalysis = () => {
         </h2>
         <div className="flex flex-wrap justify-center items-center">
           {sensors.map((sensor) => (
-            <SensorMeter {...sensor} value={50}></SensorMeter>
+            <SensorMeter key={sensor.name} {...sensor} value={50}></SensorMeter>
           ))}
         </div>
       </div>

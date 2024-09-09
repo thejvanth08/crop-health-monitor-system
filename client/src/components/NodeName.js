@@ -1,19 +1,19 @@
-const NodeName = ({ id, name, currentNode, setCurrentNode }) => {
+const NodeName = ({ field, currentField, setCurrentField }) => {
   const handleSelect = () => {
-    setCurrentNode(name);
-  }
-  
+    setCurrentField({ nodeId: field.id, name: field.cropName });
+  };
+
   return (
     <button
       className={`inline-block text-xl font-bold w-60 py-2 text-center rounded-lg ${
-        currentNode == name
+        currentField.cropName == field.cropName
           ? "bg-primary text-secondary"
           : "bg-secondary text-primary"
       } `}
       onClick={handleSelect}
     >
-      {name} - {id}
+      {field.cropName} - {field.id}
     </button>
   );
-}
+};
 export default NodeName;

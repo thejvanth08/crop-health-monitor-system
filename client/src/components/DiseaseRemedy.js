@@ -1,10 +1,14 @@
 import { useState } from "react";
 
 const DiseaseRemedy = ({ crop, disease, type, image, causes, remedies }) => {
+  const [popup, setPopup] = useState(false);
 
-  const [popup, setPopup] = useState(false); 
+  // prop can't be mutated directly
+  // disease = disease.replace("_", " ");
+  // console.log(disease);
 
-
+  let formattedDisease = disease.replace("_", " ");
+  console.log(formattedDisease);
 
   return (
     // popup window
@@ -39,7 +43,7 @@ const DiseaseRemedy = ({ crop, disease, type, image, causes, remedies }) => {
           <p>
             <span className="font-semibold">Disease:</span>{" "}
             <span className="text-primary font-semibold text-[16.8px] capitalize">
-              {disease}
+              {formattedDisease}
             </span>
           </p>
           <p>
@@ -87,5 +91,5 @@ const DiseaseRemedy = ({ crop, disease, type, image, causes, remedies }) => {
       </div>
     </div>
   );
-}
+};
 export default DiseaseRemedy;

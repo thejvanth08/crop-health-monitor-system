@@ -6,6 +6,10 @@ const sensorDataSchema = new mongoose.Schema({
     required: true,
   },
   parameters: Object,
+  timestamp: {
+    type: String,
+    required: true,
+  },
 });
 
 const SensorData = mongoose.model("SensorData", sensorDataSchema);
