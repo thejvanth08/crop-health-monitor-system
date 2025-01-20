@@ -5,6 +5,7 @@ const authenticate = (req, res, next) => {
   try {
     const cookie = req?.cookies;
     const token = cookie?.token;
+    console.log(token);
     const { id, email } = jwt.verify(token, jwtSecret);
     req.user = { id, email };
     next();
