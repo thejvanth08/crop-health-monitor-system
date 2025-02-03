@@ -3,6 +3,7 @@ const NodeName = ({ field, currentField, setCurrentField }) => {
     setCurrentField({ nodeId: field.id, name: field.cropName });
   };
 
+  console.log(field);
   return (
     <button
       className={`inline-block text-xl font-bold w-60 py-2 text-center rounded-lg ${
@@ -12,7 +13,7 @@ const NodeName = ({ field, currentField, setCurrentField }) => {
       } `}
       onClick={handleSelect}
     >
-      {field.cropName} - {field.id}
+      {field.cropName} - {field.nodeId}
     </button>
   );
 };

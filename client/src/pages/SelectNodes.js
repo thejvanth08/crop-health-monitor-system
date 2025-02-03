@@ -36,7 +36,7 @@ const SelectNodes = () => {
         overviewCrops: overviewCrops,
         fields: fields,
       });
-      console.log("navigating to user profile");
+
       navigate("/overview");
     } catch (err) {
       console.log(err);

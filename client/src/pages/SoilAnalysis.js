@@ -32,14 +32,17 @@ const SoilAnalysis = () => {
           Field Selection
         </h2>
         <div className="flex gap-x-3 justify-center">
-          {fields.map((field, index) => (
-            <NodeName
-              key={index}
-              field={field}
-              currentField={currentField}
-              setCurrentField={setCurrentField}
-            ></NodeName>
-          ))}
+          {fields.map((field, index) => {
+            console.log(field);
+            return (
+              <NodeName
+                key={index}
+                field={field}
+                currentField={currentField}
+                setCurrentField={setCurrentField}
+              ></NodeName>
+            );
+          })}
           <button
             className="text-xl font-bold w-16 py-2 rounded-lg 
                 bg-secondary text-primary flex justify-center items-center"

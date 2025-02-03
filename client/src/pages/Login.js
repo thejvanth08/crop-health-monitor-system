@@ -30,7 +30,6 @@ const Login = () => {
       // console.log(payload);
       dispatch(set(payload));
       console.log("navigating to user profile");
-
       navigate("/overview");
     } catch (err) {
       console.log("error happened during login", err);
